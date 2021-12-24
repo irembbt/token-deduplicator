@@ -1,4 +1,7 @@
-# Data4Life Coding Challenge
+# Token Deduplicator
+
+Generates 10 million (customizable) tokens consisting 7 letters which may contain duplicates.
+This projects investigates 2 methods to deduplicate a long list of tokens and saves it to a relational database using gorm.
 
 ## How to Run
 
