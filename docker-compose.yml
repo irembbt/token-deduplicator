@@ -1,0 +1,26 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: go_user
+      POSTGRES_PASSWORD: abcd1234
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build:
+      context: .
+    environment:
+      POSTGRES_USER: go_user
+      POSTGRES_PASSWORD: abcd1234
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
